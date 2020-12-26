@@ -1,0 +1,9 @@
+PROJECT = sys
+
+$(PROJECT).prg: $(PROJECT).asm bios.inc
+	rcasm -l -v -x -d 1802 $(PROJECT)
+
+clean:
+	-rm $(PROJECT).prg
+
+

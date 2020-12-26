@@ -1,0 +1,17 @@
+MOD       ../dir/dir.prg                    8300
+MOD       ../mkdir/mkdir.prg                8b00
+MOD       ../chdir/chdir.prg                8c00
+MOD       ../install/install.prg            8d00
+PROG      ./eosinst/eosinst.prg             9000
+PROG      ./hdinit/hdinit.prg               9200
+PROG      ./fsgen/fsgen.prg                 9400
+PROG      ./sys/sys.prg                     9900
+PROG      ./bininst/bininst.prg             9a00
+PROG      ../kernel/kernel.prg              a000
+MOD       ../crc/crc.prg                    c000
+MOD       ../copy/copy.prg                  c200
+MOD       ../lbr/lbr.prg                    c400
+MOD       ../xr/xr.prg                      c800
+PROG      ./menu/menu.prg                   d000
+PROG      ./sedit/sedit.prg                 d800
+PROG      ../../visual02/visual02.prg       e000

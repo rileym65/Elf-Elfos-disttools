@@ -1,0 +1,13 @@
+elfos.rom
+elfos.tgz
+build.rom
+bios.inc
+kernel.inc
+table.rom
+rom.dev
+sedit.txt
+x.x
+dist/
+*.bak
+*.prg
+*.lst
