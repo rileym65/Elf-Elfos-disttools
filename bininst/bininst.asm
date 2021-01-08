@@ -9,10 +9,16 @@
 include    bios.inc
 include    kernel.inc
 
+#ifdef RAM
+fildes:    equ     5000h
+table:     equ     2003h
+           org     3a00h
+#else
 fildes:    equ     2000h
 table:     equ     8003h
-
            org     9a00h
+#endif
+
 boot:      ldi     0                   ; setup stack
            phi     r2
            ldi     0f0h

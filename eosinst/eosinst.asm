@@ -8,7 +8,11 @@
 
 include    bios.inc
 
+#ifdef RAM
+           org     3000h
+#else
            org     9000h
+#endif
            ldi     01fh                ; setup a stack
            phi     r2
            ldi     0ffh

@@ -8,7 +8,12 @@
 
 include    bios.inc
 
+#ifdef RAM
+           org     03200h
+#else
            org     09200h
+#endif
+
            ldi     0                   ; setup stack
            phi     r2
            ldi     0ffh       
@@ -330,6 +335,11 @@ sectmsg:   db      10,13,'Sectors: ',0
 donemsg:   db      10,13,'Complete',10,13,0
 typemsg:   db      '<Q>uick or <F>ull ? ',0
 
+#ifdef RAM
+           org     1000h
+#else
            org     2400h
+#endif
+
 sector:    ds      256
 

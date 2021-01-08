@@ -8,7 +8,12 @@
 
 include    bios.inc
 
+#ifdef RAM
+           org     3900h
+#else
            org     9900h
+#endif
+
 ; ************************************
 ; *** Define disk boot sector      ***
 ; *** This runs at 100h            ***
@@ -30,7 +35,11 @@ bootst:    sep     scall
            dw      f_idereset
            ldi     1                   ; setup sector address
            plo     r7
+#ifdef RAM
+           ldi     043h                ; starting page for kernel
+#else
            ldi     0a3h                ; starting page for kernel
+#endif
            phi     rf                  ; place into read pointer
            ldi     0
            plo     rf

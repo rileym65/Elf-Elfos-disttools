@@ -8,9 +8,14 @@
 
 include    bios.inc
 
+#ifdef RAM
+boot:      equ     1400h
+           org     03400h
+#else
 boot:      equ     2400h
-
            org     09400h
+#endif
+
            ldi     0                   ; setup stack
            phi     r2
            ldi     0ffh      
@@ -681,7 +686,11 @@ aucntmsg:  db      'Total AUs: ',0
 mdirmsg:   db      'Master Dir Sector: ',0
 donemsg:   db      'File system generation complete',10,13,0
 
+#ifdef RAM
+           org     03800h
+#else
            org     09800h
+#endif
 ;          org     2400h
 ; ************************************
 ; *** Define disk boot sector      ***
@@ -737,13 +746,23 @@ bootrd:    glo     r7                  ; save R7
            plo     r0
            sep     r0                  ; jump to os
 
+#ifdef RAM
+           org     1500h
+#else
            org     2500h
+#endif
+
 seccount:  dw      0,0
 fstype:    db      0
 masterdir: dw      0,0
 allocsize: dw      0
 aucount:   dw      0,0
 
+#ifdef RAM
+           org     1600h
+#else
            org     2600h
+#endif
+
 sector:    ds      256
 
