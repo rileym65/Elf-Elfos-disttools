@@ -522,7 +522,11 @@ mdloop:    ghi     rd                  ; divide by 2
            sep     scall
            dw      f_msg
 
+#ifdef RAM
+           lbr     3013h
+#else
            lbr     9013h
+#endif
 
 ; ****************************
 ; *** Write sector to disk ***

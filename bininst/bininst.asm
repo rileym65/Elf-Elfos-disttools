@@ -41,7 +41,11 @@ start:     sep     scall
            sep     scall
            dw      f_msg
 
+#ifdef RAM
+           ldi     043h                ; source position for kernel
+#else
            ldi     0a3h                ; source position for kernel
+#endif
            phi     r9
            ldi     03h                 ; destination for kernel
            phi     r8
@@ -49,7 +53,11 @@ start:     sep     scall
            plo     r9
            plo     r8
            plo     rc
+#ifdef RAM
+           ldi     01ch                ; will copy 7k
+#else
            ldi     020h                ; will copy 7k
+#endif
            phi     rc
 krnllp:    lda     r9                  ; get source byte
            str     r8                  ; store into destination
@@ -218,7 +226,11 @@ entrydn:   irx                         ; recover pointer
            plo     ra
            sep     sret                ; and return to caller
 
+#ifdef RAM
+maindone:  lbr     3013h               ; return to installation menu
+#else
 maindone:  lbr     9013h               ; return to installation menu
+#endif
 
 msg:       db     'Binary utilities installer'
 crlf:      db     10,13,0

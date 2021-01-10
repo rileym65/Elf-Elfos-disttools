@@ -47,6 +47,18 @@ main:      ldi     01fh                ; setup a stack
            ldn     rf                  ; get byte
            smi     '1'                 ; check for hdinit
            bnz     not1                ; jump if not
+#ifdef RAM
+           lbr     03213h              ; jump to hdinit routine
+not1:      smi     1                   ; check for fsgen
+           bnz     not2                ; jump if not
+           lbr     03413h              ; jump into fsgen
+not2:      smi     1                   ; check for sys
+           bnz     not3                ; jump if not
+           lbr     03913h              ; jump to sys routine
+not3:      smi     1                   ; check for utilities
+           bnz     not4                ; jump if not
+           lbr     03a13h              ; jump to utilities installer
+#else
            lbr     09213h              ; jump to hdinit routine
 not1:      smi     1                   ; check for fsgen
            bnz     not2                ; jump if not
@@ -57,6 +69,7 @@ not2:      smi     1                   ; check for sys
 not3:      smi     1                   ; check for utilities
            bnz     not4                ; jump if not
            lbr     09a13h              ; jump to utilities installer
+#endif
 not4:      smi     1                   ; check for boot
            bnz     main
            lbr     0ff00h              ; boot elfos

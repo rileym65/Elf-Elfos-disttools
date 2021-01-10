@@ -67,7 +67,11 @@ bootrd:    glo     r7                  ; save R7
            sep     scall
            dw      f_msg
 
+#ifdef RAM
+           lbr     3013h
+#else
            lbr     9013h               ; return to installation menu
+#endif
 
 donemsg:   db     'System copied.',10,13,0
 

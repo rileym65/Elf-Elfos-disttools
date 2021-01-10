@@ -213,7 +213,11 @@ cleardn:   ldi     high sectmsg        ; display sector summary
            sep     scall
            dw      f_msg
 
+#ifdef RAM
+           lbr     3013h
+#else
            lbr     9013h
+#endif
 
 fill:      stxd                        ; save D
            ldi     2                   ; high byte of 512
