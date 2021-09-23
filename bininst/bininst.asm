@@ -69,7 +69,7 @@ krnllp:    lda     r9                  ; get source byte
            bnz     krnllp
 
            sep     scall               ; setup kernel
-           dw      o_lmpsize
+           dw      d_lmpsize
 
            ldi     high bindir         ; want to make BIN directory
            phi     rf
@@ -174,7 +174,7 @@ entryyes:  ldi     high instalmsg      ; display skipped message
            phi     rd
            ldi     low fildes
            plo     rd
-           ldi     1                   ; create if it does not exist
+           ldi     9                   ; create and set executable
            plo     r7
            sep     scall               ; open/create the file
            dw      o_open
@@ -238,6 +238,6 @@ instmsg:   db     'Install ',0
 inst2msg:  db     ' ? ',0
 skipped:   db     ' Skipped',10,13,0
 instalmsg: db     ' Installing...',10,13,0
-bindir:    db     '/BIN',0
+bindir:    db     '/bin',0
 
 

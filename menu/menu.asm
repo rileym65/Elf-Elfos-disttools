@@ -26,15 +26,15 @@ buffer:    equ     07f00h
            lbr     f_initcall          ; setup linking registers
 start:     sep     scall               ; setup terminal baud
            dw      f_setbd
-main:      ldi     0ch                 ; clear screen
-           sep     scall
-           dw      f_type
+main:      sep     scall             ; clear screen
+           dw      f_inmsg
+           db      27,'[H',27,'[2J',0
            mov     rd,04b17h         ; set screen position
            sep     scall
            dw      gotoxy
            sep     scall             ; display version
            dw      f_inmsg
-           db      'v1.1',0
+           db      'v4.1',0
            mov     rd,02004h         ; set screen position
            sep     scall             ; set cursor position
            dw      gotoxy

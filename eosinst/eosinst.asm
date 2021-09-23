@@ -13,7 +13,7 @@ include    bios.inc
 #else
            org     9000h
 #endif
-           ldi     01fh                ; setup a stack
+           ldi     03fh                ; setup a stack
            phi     r2
            ldi     0ffh
            plo     r2
@@ -25,7 +25,7 @@ include    bios.inc
            lbr     f_initcall          ; setup linking registers
 start:     sep     scall               ; setup terminal baud
            dw      f_setbd
-main:      ldi     01fh                ; setup a stack
+main:      ldi     03fh                ; setup a stack
            phi     r2
            ldi     0ffh
            plo     r2

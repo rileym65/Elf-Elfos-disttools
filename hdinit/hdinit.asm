@@ -37,6 +37,7 @@ start:     sep     scall               ; call bios to set terminal
            plo     rd
            sep     scall               ; perform ide reset
            dw      f_idereset
+           lbr     quick
 
 redo:      ldi     high typemsg        ; display type message
            phi     rf
@@ -327,8 +328,9 @@ wrtcmd:    sex     r2                  ; be sure X points to stack
            out     3                   ; send command
            dec     r2                  ; move pointer back
 drqloop:   inp     3                   ; read status register
-           ani     8                   ; mask for DRQ bit
-           bz      drqloop             ; loop until found
+           ani     0c0h                ; mask for BSY and DRQ bit
+           smi     040h                ; wany only DRQ set
+           bnz     drqloop             ; loop until found
            br      beforerdy           ; return, readying waitrdy again
 
 
